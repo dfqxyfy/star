@@ -3,13 +3,14 @@ package com.ccs.star.util;
 /**
  * Created by ccs on 2016/11/9.
  */
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -40,38 +41,23 @@ public class ChromeSpider {
         service.stop();
     }
 
-
-    // {@literal }
     public void googleSearch(String url) {
         driver.get(url);
-
-        List<WebElement> list = driver.findElement(By.id("sm-maindata")).findElement(By.tagName("div"))
-                .findElement(By.tagName("ul")).findElements(By.tagName("li"));
-        List<Map<String, String>> baseList = new ArrayList<>();
-        //for(int k = 0;k<list.size();k++){
-        for (int k = 0; k < 11; k++) {
-            Map<String, String> map = new HashMap<>();
-            System.out.println("dealing with " + (k + 1) + " ��");
-            WebElement element = list.get(k);
-            //System.out.println(element.getText());
-            WebElement lielement = element.findElement(By.tagName("div")).findElement(By.tagName("div")).findElement(By.tagName("a"));
-            String hrefUrl = lielement.getAttribute("href");
-            System.out.println("���ӵ�url:" + hrefUrl);
-            String imageUrl = lielement.findElement(By.tagName("img")).getAttribute("src");
-            System.out.println("ͼƬurl��" + imageUrl);
-            map.put("hrefUrl", hrefUrl);
-            map.put("imageUrl", imageUrl);
-            baseList.add(map);
+        List<WebElement> list = driver.findElement(By.className("info_box")).findElement(By.className("info"))
+                .findElement(By.tagName("dl")).findElement(By.tagName("dt")).findElement(By.tagName("ul")).findElements(By.tagName("li"));
+        for(WebElement ele:list){
+            //System.out.println(ele.findElement(By.tagName("li")).getText());
+            System.out.println(ele.getText());
         }
-        for (Map<String, String> m : baseList) {
-            driver.get(m.get("hrefUrl"));
-            WebElement myEle = driver.findElement(By.id("mod-detail-title"));
-            String energyName = myEle.findElement(By.tagName("h1")).getText();
-            System.out.println("������֣�" + energyName);
-            List<WebElement> trsElements = driver.findElement(By.id("mod-detail-attributes")).findElement(By.tagName("tbody"))
-                    .findElements(By.tagName("tr"));
 
-        }
     }
 
+    public static void main(String[] args) {
+
+        //Logger logger = Logger.getLogger(RemoteWebDriver.class.getName());
+        Logger.getGlobal().setLevel(Level.OFF);
+        String url ="http://www.xzw.com/astro/aries/";
+        ChromeSpider spider = new ChromeSpider();
+        spider.googleSearch(url);
+    }
 }
