@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.net.UnknownHostException;
 
@@ -32,5 +33,14 @@ public class MongoDBConfiguration {
     public Mongo mongo() throws UnknownHostException {
         this.mongo = this.properties.createMongoClient(this.options,null);
         return this.mongo;
+    }
+
+    @PostConstruct
+    public void getMongoProperties(){
+        properties.setDatabase("stardb");
+        properties.setHost("localhost");
+        properties.setUsername("star");
+        properties.setPassword("star".toCharArray());
+        properties.setPort(27017);
     }
 }

@@ -1,5 +1,7 @@
 package com.ccs.star.controller;
 
+import com.ccs.star.service.StarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,15 @@ public class RootController {
     @ResponseBody
     @RequestMapping("/*")
     public String welcome() {
+        return "Welcome!";
+    }
+    @Autowired
+    StarService starService;
+
+    @ResponseBody
+    @RequestMapping("/test")
+    public String welcome2() {
+        starService.find();
         return "Welcome!";
     }
 
