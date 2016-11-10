@@ -35,14 +35,14 @@ public class ChromeSpider {
     private WebDriver driver;
 
     public ChromeSpider() {
-        service = new ChromeDriverService.Builder().usingDriverExecutable(new File("D:/program/chromedriver.exe"))
-                .usingAnyFreePort().build();
-        try {
-            service.start();
-            driver = new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        service = new ChromeDriverService.Builder().usingDriverExecutable(new File("D:/program/chromedriver.exe"))
+//                .usingAnyFreePort().build();
+//        try {
+//            service.start();
+//            driver = new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void createAndStopService() {
@@ -106,7 +106,11 @@ public class ChromeSpider {
         String url ="http://www.xzw.com/astro/aries/";
         ChromeSpider spider = new ChromeSpider();
         spider.mongoTemplate = ctx.getBean(MongoTemplate.class);
+
+        Star star = new Star();
+        star.setStar(1);
+        spider.mongoTemplate.insert(star);
         //spider.googleSearch(url);
-        spider.initStar();
+        //spider.initStar();
     }
 }
