@@ -7,16 +7,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection="starDetail")
 public class StarDetail {
-    private Integer star;
+    private Integer order;
     private String attr;
     private String desc;
 
-    public Integer getStar() {
-        return star;
+    public Integer getOrder() {
+        return order;
     }
 
-    public void setStar(Integer star) {
-        this.star = star;
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     public String getAttr() {
