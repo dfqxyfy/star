@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.alibaba.fastjson.JSON;
+import com.ccs.star.config.MongoDBConfiguration;
 import com.ccs.star.constant.Stars;
 import com.ccs.star.entity.Star;
 import com.ccs.star.entity.StarDetail;
@@ -28,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 @Configuration
-@ComponentScan("com")
+@ComponentScan("com.ccs.star")
 public class ChromeSpider {
 
     private ChromeDriverService service;
