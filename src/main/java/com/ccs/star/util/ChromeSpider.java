@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.alibaba.fastjson.JSON;
 import com.ccs.star.constant.Stars;
 import com.ccs.star.entity.Star;
 import com.ccs.star.entity.StarDetail;
@@ -20,6 +21,8 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -72,7 +75,7 @@ public class ChromeSpider {
             //System.out.println(ele.getAttribute("href"));
             starsListUrl.add(ele.getAttribute("href"));
         }
-        driver.close();
+        //driver.close();
     }
 
     @Autowired
@@ -82,6 +85,7 @@ public class ChromeSpider {
         String basUrl = "http://www.xzw.com/astro/aries/";
         List<String> starsListUrl = new ArrayList<>();
         spiderStarUrl(basUrl,starsListUrl);
+        System.out.println("..........."+ JSON.toJSONString(starsListUrl));
         for(int i = 0;i<starsListUrl.size();i++){
             Star star = new Star();
             star.setStar(Stars.getStarByNum(i+1).getNum());
@@ -95,10 +99,13 @@ public class ChromeSpider {
 
     public static void main(String[] args) {
 
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(ChromeSpider.class);
+
         //Logger logger = Logger.getLogger(RemoteWebDriver.class.getName());
         Logger.getGlobal().setLevel(Level.OFF);
         String url ="http://www.xzw.com/astro/aries/";
         ChromeSpider spider = new ChromeSpider();
+        spider.mongoTemplate = ctx.getBean(MongoTemplate.class);
         //spider.googleSearch(url);
         spider.initStar();
     }
