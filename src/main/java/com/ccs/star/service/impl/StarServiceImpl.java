@@ -1,9 +1,12 @@
 package com.ccs.star.service.impl;
 
+import com.ccs.star.entity.Star;
 import com.ccs.star.entity.StarDetail;
 import com.ccs.star.service.StarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,9 +19,9 @@ public class StarServiceImpl implements StarService {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public void find(){
-        StarDetail sd = new StarDetail();
-
-        mongoTemplate.insert(sd);
+    public Star findStar(Integer num) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("star").is(num));
+        return mongoTemplate.findOne(query,Star.class);
     }
 }

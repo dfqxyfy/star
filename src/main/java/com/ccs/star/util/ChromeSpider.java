@@ -28,8 +28,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-@Configuration
-@ComponentScan("com.ccs.star")
 public class ChromeSpider {
 
     private ChromeDriverService service;
@@ -98,20 +96,20 @@ public class ChromeSpider {
 
     }
 
-    public static void main(String[] args) {
-
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(ChromeSpider.class);
-
-        //Logger logger = Logger.getLogger(RemoteWebDriver.class.getName());
-        Logger.getGlobal().setLevel(Level.OFF);
-        String url ="http://www.xzw.com/astro/aries/";
-        ChromeSpider spider = new ChromeSpider();
-        spider.mongoTemplate = ctx.getBean(MongoTemplate.class);
-
-        Star star = new Star();
-        star.setStar(1);
-        spider.mongoTemplate.insert(star);
-        //spider.googleSearch(url);
-        //spider.initStar();
-    }
+//    public static void main(String[] args) {
+//
+//        ApplicationContext ctx = new AnnotationConfigApplicationContext(ChromeSpider.class);
+//
+//        //Logger logger = Logger.getLogger(RemoteWebDriver.class.getName());
+//        Logger.getGlobal().setLevel(Level.OFF);
+//        String url ="http://www.xzw.com/astro/aries/";
+//        ChromeSpider spider = new ChromeSpider();
+//        spider.mongoTemplate = ctx.getBean(MongoTemplate.class);
+//
+//        Star star = new Star();
+//        star.setStar(1);
+//        spider.mongoTemplate.insert(star);
+//        //spider.googleSearch(url);
+//        //spider.initStar();
+//    }
 }

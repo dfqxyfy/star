@@ -32,12 +32,8 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-@Configuration
-@ComponentScan("com.ccs.star")
-@EnableConfigurationProperties(MongoProperties.class)
+
 public class InitMongoDb {
 
 
@@ -134,19 +130,19 @@ public class InitMongoDb {
 
     }
 
-    public static void main(String[] args) throws Exception{
-
-        Logger.getGlobal().setLevel(Level.OFF);
-        InitMongoDb spider = new InitMongoDb();
-
-        spider.properties = new MongoProperties();
-        spider.getMongoProperties();
-        spider.options = MongoClientOptions.builder().build();
-
-        spider.mongo = spider.mongo();
-
-        spider.mongoTemplate = new MongoTemplate(spider.mongo,"stardb");
-
-        spider.initStar();
-    }
+//    public static void main(String[] args) throws Exception{
+//
+//        Logger.getGlobal().setLevel(Level.OFF);
+//        InitMongoDb spider = new InitMongoDb();
+//
+//        spider.properties = new MongoProperties();
+//        spider.getMongoProperties();
+//        spider.options = MongoClientOptions.builder().build();
+//
+//        spider.mongo = spider.mongo();
+//
+//        spider.mongoTemplate = new MongoTemplate(spider.mongo,"stardb");
+//
+//        spider.initStar();
+//    }
 }
