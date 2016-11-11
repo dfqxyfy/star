@@ -18,12 +18,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -35,14 +32,13 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Configuration
 @ComponentScan("com.ccs.star")
 @EnableConfigurationProperties(MongoProperties.class)
-public class ChromeSpiderCopy {
+public class InitMongoDb {
 
 
     @Autowired
@@ -75,7 +71,7 @@ public class ChromeSpiderCopy {
     private ChromeDriverService service;
     private WebDriver driver;
 
-    public ChromeSpiderCopy() {
+    public InitMongoDb() {
         service = new ChromeDriverService.Builder().usingDriverExecutable(new File("D:/program/chromedriver.exe"))
                 .usingAnyFreePort().build();
         try {
@@ -141,7 +137,7 @@ public class ChromeSpiderCopy {
     public static void main(String[] args) throws Exception{
 
         Logger.getGlobal().setLevel(Level.OFF);
-        ChromeSpiderCopy spider = new ChromeSpiderCopy();
+        InitMongoDb spider = new InitMongoDb();
 
         spider.properties = new MongoProperties();
         spider.getMongoProperties();
