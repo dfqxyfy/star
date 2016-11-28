@@ -132,7 +132,6 @@ public class InitMongoDb {
 
 //    public static void main(String[] args) throws Exception{
 //
-//        Logger.getGlobal().setLevel(Level.OFF);
 //        InitMongoDb spider = new InitMongoDb();
 //
 //        spider.properties = new MongoProperties();

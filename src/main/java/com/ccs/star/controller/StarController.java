@@ -20,7 +20,11 @@ public class StarController extends BaseController{
     @ResponseBody
     @RequestMapping("/findStar")
     public String findStar(Integer num) {
+        System.out.println(num);
         Star star = starService.findStar(num);
         return success(star);
     }
+
+    //@ResponseBody
+    //@RequestMapping
 }
