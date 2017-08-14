@@ -2,17 +2,25 @@ package com.ccs.star;
 
 import com.ccs.star.constant.Stars;
 import com.ccs.star.entity.Person;
+import com.ccs.star.entity.PersonD;
+import com.ccs.star.entity.PersonDetail;
+import com.ccs.star.util.HttpClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * Created by ccs on 2016/11/22.
@@ -26,7 +34,7 @@ public class BaseTest {
     private MongoTemplate mongoTemplate;
 
     @Test
-    public void insert(){
+    public void initPerson(){
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("D:\\workspace\\star\\src\\test\\starperson"));
@@ -49,13 +57,45 @@ public class BaseTest {
                     for(String p:persons){
                         Person person = new Person();
                         person.setStar(star.getNum());
-                        person.setName(p);
+                        person.setName(p.replace("。","").replace("等",""));
                         mongoTemplate.insert(person);
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void insertPersonDetail(){
+
+
+        Query query = new Query();
+        query.with(new Sort(Sort.Direction.DESC,"star"));
+
+        int curPage = 1;
+        int pageSize = 10;
+        query.skip((curPage-1)*pageSize).limit(pageSize);
+        List<Person> list = mongoTemplate.find(query,Person.class);
+        while(list.size()>0){
+            for(Person p:list){
+
+                PersonD pp = new PersonD();
+                PersonDetail detail = new PersonDetail();
+
+                String str = HttpClient.get("https://wapbaike.baidu.com/item/"+p.getName(),null);
+                //System.out.println(str);
+                detail.setId(System.currentTimeMillis());
+                detail.setDesc(str);
+                pp.setPersonDetail(detail);
+
+                mongoTemplate.insert(pp);
+                mongoTemplate.insert(detail);
+            }
+            curPage ++;
+            query.skip((curPage-1)*pageSize).limit(pageSize);
+            list = mongoTemplate.find(query,Person.class);
         }
     }
 }

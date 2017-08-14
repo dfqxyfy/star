@@ -15,7 +15,7 @@ public class RootController {
     public static final String PATH_ROOT = "/";
 
     @ResponseBody
-    @RequestMapping("/*")
+    @RequestMapping("/home/*")
     public String welcome() {
         return "Welcome!";
     }
