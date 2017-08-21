@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<script src="mustache.js"></script>
+	<script>
+		function mustRender(id, data) {
+			var d = document.getElementById(id);
+			var s = d.innerHTML;
+			var html = Mustache.render(s, data);
+			d.innerHTML = html;
+		}
+	</script>
+</head>
+<body>
+	<div id="d1">
+		{{#list}}
+		<h3><a href="{{detailUrl}}">{{title}}</a></h3>
+		<p>{{desc}}</p>
+		{{/list}}
+	</div>
+	<script>
+		var obj = { "code": 0, "data": [{ "answerUrl": "https://www.zhihu.com/people/weiwei1126", "desc": "人类对儿童有本能的好感，这有助于提高儿童的生存率，有利于整个人类种群的生存与发展，是自然选择的结果然而万恶的喵星人汪星人利用了人类的这一特性，伪装了许多人类儿童的特点，从人类那里获得好处，提高自己的生存率", "detailUrl": "https://www.zhihu.com/question/41856287", "title": "为什么人会觉得猫和狗很可爱？？" }, { "answerUrl": "https://www.zhihu.com/people/tian-hong-88", "desc": "国外人气网红萌狗与萝莉小主人 人气萨摩耶犬Puck，看见它，你仿佛见到冬季里最温暖的小太阳。饲主上传许多Puck和小主人的合照，两人一起玩乐、一起嬉闹，一人一狗就是彼此最重要的伙伴，画面十分温馨可爱。 抱着心爱的雪人玩偶，Puck笑的好开心。 偶尔戴上…显示全部", "detailUrl": "https://www.zhihu.com/question/39989068", "title": "八一八非常萌非常可爱的狗狗照片？" }, { "answerUrl": "https://www.zhihu.com/question/58421781/answer/157154815", "desc": "她对狗狗是真爱，发自内心的真爱！ 她喜爱狗狗的一切，不仅爱其外表，也爱其灵魂，还爱其本质。 恕我直言，你们不是一类人，你们在一起不合适。", "detailUrl": "https://www.zhihu.com/question/58421781", "title": "女孩说狗可爱，又说狗肉真好吃，怎么理解她呢？" }, { "answerUrl": "https://www.zhihu.com/people/shen-yan-hui-42", "desc": "你这是空手钓萌图2333333 存了一张别人发的算是表情的动图_(:з」∠)_大眼睛眨巴眨巴的感觉炒鸡可爱ww 叫啥来着，记得这只还挺火的。。。 诶咋忽然又不能看动图了_(:з」∠)_之前还能看", "detailUrl": "https://www.zhihu.com/question/59684222", "title": "有哪一瞬间被 猫（狗）的可爱举动 萌到了？" }, { "answerUrl": "https://www.zhihu.com/question/50960755/answer/123517923", "desc": "百度搜索“乐观家族”这套表情来自英雄联盟s5LGD战队", "detailUrl": "https://www.zhihu.com/question/50960755", "title": "有没有类似这样可爱的狗的图片？" }, { "answerUrl": "https://www.zhihu.com/question/63084306/answer/205160909", "desc": "约克夏吧", "detailUrl": "https://www.zhihu.com/question/63084306", "title": "有没有小型、不撕家、聪明可爱的狗？" }, { "answerUrl": "https://www.zhihu.com/people/patrick-47-10", "desc": "1、说明你退化了。2、这是传说中的狗咬狗？", "detailUrl": "https://www.zhihu.com/question/50969434", "title": "感觉我家狗好可爱好可爱，我总有咬它一口的冲动，这是什么心理？" }, { "answerUrl": "https://www.zhihu.com/question/30293141/answer/50204017", "desc": "虽然我的第一只狗才两岁半，但是只要一想到他只能陪我十几年，我就会很难过，难以想象他如果不再我身边了的话怎么办。所以对他唯一的心愿就是他可以健康", "detailUrl": "https://www.zhihu.com/question/30293141", "title": "养一只可爱的狗，陪它走过一生是怎么样的体验呢？" }, { "answerUrl": "https://www.zhihu.com/question/39424988/answer/81366883", "desc": "让你老婆自己挑啊，养了她喜欢的狗就不懒了。我家狗治好了我多年的懒病。", "detailUrl": "https://www.zhihu.com/question/39424988", "title": "老婆喜欢狗，但又比较懒，有哪个品种的狗比较可爱但又不需要太多打理的推荐吗?" }, { "answerUrl": "https://www.zhihu.com/people/xing-kong-dao-ying", "desc": "我现在的狗狗会飞盘 ，会滑板 ，会跳水 （我也能！） ，会上墙 ，会：坐 ，卧 ，随行，站立，各种延缓，等待，鞠躬 ，再见 ，匍匐，拒食，远距离操控。。。。他从来不吃任何人的东西和地上的东西，他总是静静地待在我身边或者副驾，无论何时，他在必要的时…显示全部", "detailUrl": "https://www.zhihu.com/question/41484704", "title": "为什么人家的狗那么可爱那么懂事我家的狗就那么二呢？" }] };
+		mustRender('d1', { list: obj.data });
+	</script>
+
+</body>
+</html>

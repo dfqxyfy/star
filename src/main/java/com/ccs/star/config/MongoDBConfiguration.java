@@ -39,8 +39,10 @@ public class MongoDBConfiguration {
     public void getMongoProperties(){
         properties.setDatabase("stardb");
         properties.setHost("localhost");
-        properties.setUsername("star");
-        properties.setPassword("star".toCharArray());
+        //properties.setUsername("star");
+        //properties.setPassword("star".toCharArray());
         properties.setPort(27017);
+
+        System.out.println("aaaaaaaaaaaaaa");
     }
 }

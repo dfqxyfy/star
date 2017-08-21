@@ -1,4 +1,4 @@
-package com.ccs.star.controller;
+package com.ccs.dogcat.controller;
 
 
 import java.util.Map;
@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +53,10 @@ public abstract class BaseController {
                 SerializerFeature.WriteNullBooleanAsFalse, // Boolean字段如果为null，输出为false，而不是null
                 SerializerFeature.WriteNullStringAsEmpty // 字符类型字段如果为null，输出为""，而不是null
         };
-
-        return JSON.toJSONString(object, features);
+        Map<String,Object> map = new HashedMap();
+        map.put("code",0);
+        map.put("data",object);
+        return JSON.toJSONString(map, features);
     }
 
 }

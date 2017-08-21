@@ -58,8 +58,8 @@ public class InitMongoDb {
     public void getMongoProperties(){
         properties.setDatabase("stardb");
         properties.setHost("localhost");
-        properties.setUsername("star");
-        properties.setPassword("star".toCharArray());
+        //properties.setUsername("admin");
+        //properties.setPassword("star".toCharArray());
         properties.setPort(27017);
     }
 

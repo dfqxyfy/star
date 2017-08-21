@@ -20,6 +20,7 @@ public class ExampleForChrome {
         System.setProperty("webdriver.chrome.driver","C:/Users/sunlc/AppData/Local/Google/Chrome/Application/chrome.exe");
         System.setProperty("webdriver.chrome.driver","D:/program/chromedriver.exe");
         System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+        //System.setProperty("webdriver.chrome.driver","D:\\program\\GoogleChromePortable\\ChromePortable.exe");
         // 创建一个 ChromeDriver 的接口，用于连接 Chrome（chromedriver.exe 的路径可以任意放置，只要在newFile（）的时候写入你放的路径即可）
         @SuppressWarnings("deprecation")
         ChromeDriverService service = new ChromeDriverService.Builder().usingDriverExecutable( new File("D:/program/chromedriver.exe")) .usingAnyFreePort().build();
